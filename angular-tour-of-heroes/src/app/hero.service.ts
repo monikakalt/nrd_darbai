@@ -11,6 +11,11 @@ import { MessageService } from './message.service';
 @Injectable()
 export class HeroService {
 
+  getHero(id: number): Observable<Hero> {
+    // TODO: send the message _after_ fetching the hero
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(HEROES.find(hero => hero.id === id));
+  }
   /*This is a typical "service-in-service" scenario: you inject the MessageService
   into the HeroService which is injected into the HeroesComponent.*/
   constructor(private messageService: MessageService) { }
